@@ -1,0 +1,7 @@
+https://github.com/rdtc8822-debug/L1JGO-Whale/commit/2f6f15df4e41b15eb127c0f0de0bcbce27f2168b#diff-d0a48925167955760bd815d9a1c2764ea5dbfe709a2a0340fb8d28735ed2469a
+已經有用go實作
+在 broadcast.go 新增 S_ItemBoard、S_ShowDrop 的 builder/send helper。
+在 item_use.go 串接怪物掉落：
+金幣送 S_ShowDrop(type=1)
+一般道具送 S_ItemBoard(gfxid,msg)
+在 combat.go 串接經驗取得 S_ShowDrop(type=0)。

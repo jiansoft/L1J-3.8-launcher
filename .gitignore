@@ -1,0 +1,27 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Game assets (copyright NCsoft, do not redistribute)
+TW13081901.bin
+TW13081901.txt
+吃檔/
+
+# Launcher runtime
+launcher.ini
+launcher.log
+lineage.cfg
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local marker flags (除錯用,不該入庫)
+disable_*.flag

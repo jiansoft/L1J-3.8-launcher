@@ -1,0 +1,72 @@
+[package]
+name = "launcher"
+version = "1.0.0"
+edition = "2021"
+
+[[bin]]
+name = "launcher"
+path = "src/main.rs"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "encoder"
+path = "src/bin/encoder.rs"
+
+[dependencies]
+windows = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_System_Threading",
+    "Win32_System_Memory",
+    "Win32_System_Kernel",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_LibraryLoader",
+    "Win32_Security",
+    "Win32_Graphics_Gdi",
+    "Win32_System_Console",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_HiDpi",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_Controls",
+    "Win32_Networking_WinInet",
+    "Win32_System_Registry",
+] }
+anyhow = "1"
+aes = "0.8"
+flate2 = "1"
+once_cell = "1"
+# 自動更新：下載 patch.zip 後解壓，交給 eat.exe 處理檔案替換。default-features = false
+# 拿掉 bzip2/lzma/zstd 等不必要的編解碼器，只留 ZIP 標配的 deflate。
+zip = { version = "0.6", default-features = false, features = ["deflate"] }
+native-windows-gui = "1.0"
+native-windows-derive = "1.0"
+parking_lot = "0.12"
+base64 = "0.22"
+# WebView2 host — 載入新 skin 系統（HTML/CSS 給使用者可控介面）
+wry = { version = "0.45", default-features = false, features = ["protocol"] }
+tao = "0.29"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+encoding_rs = "0.8"
+arboard = "3"
+phf = { version = "0.11", features = ["macros"] }
+# overlay 用 — 讀 1888/1889/1971/1973 PNG 自己 decode 成 BGRA premul
+png = "0.17"
+
+[features]
+verbose-log = []
+
+[dev-dependencies]
+regex = "1"
+
+[build-dependencies]
+winres = "0.1"
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = "symbols"
+codegen-units = 1
